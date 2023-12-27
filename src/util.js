@@ -18,6 +18,8 @@ function getConfig() {
     function getNewConfig() {
         try {
             const config = yaml.parse(fs.readFileSync(path.join(process.cwd(), './config.yaml'), 'utf8'));
+			config.basicAuthUser.username = process.env.username
+			config.basicAuthUser.password = process.env.password
             return config;
         } catch (error) {
             console.warn('Failed to read config.yaml');
